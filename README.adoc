@@ -1,18 +1,19 @@
 = Hello GitOps, hello Flux
 
-== Install Flux
+== Install Flux and Weave GitOps
 
-https://fluxcd.io/flux/installation[Installation instructions in the Flux documentation]
+- https://fluxcd.io/flux/installation[Installation instructions in the Flux documentation]
+- https://docs.gitops.weave.works/docs/open-source/getting-started/install-OSS/[Installation instructions in the Weave GitOps documentation]
 
 === Local Machine
 
-.Install Flux CLI and Weaveworks GitOps
+.Install Flux CLI and Weave GitOps
 [source,bash]
 ----
 # Flux CLI
 brew install fluxcd/tap/flux
 
-# Weaveworks GitOps
+# Weave GitOps
 brew tap weaveworks/tap
 brew install weaveworks/tap/gitops
 ----
@@ -36,7 +37,7 @@ terraform init
 terraform apply
 ----
 
-Let Flux install the Weaveworks dashboard:
+Let Flux install the Weave GitOps dashboard:
 
 [source,bash]
 ----
@@ -51,7 +52,7 @@ git commit -m "Add Weave GitOps Dashboard"
 git push
 ----
 
-== Use the Weaveworks dashboard
+== Use the Weave GitOps dashboard
 
 [source,bash]
 ----
