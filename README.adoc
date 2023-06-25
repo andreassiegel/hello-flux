@@ -6,10 +6,15 @@ https://fluxcd.io/flux/installation[Installation instructions in the Flux docume
 
 === Local Machine
 
-.Install Flux CLI
+.Install Flux CLI and Weaveworks GitOps
 [source,bash]
 ----
+# Flux CLI
 brew install fluxcd/tap/flux
+
+# Weaveworks GitOps
+brew tap weaveworks/tap
+brew install weaveworks/tap/gitops
 ----
 
 To configure command completion, add the following to `~/.zshrc`:
@@ -22,3 +27,36 @@ To configure command completion, add the following to `~/.zshrc`:
 
 === Kubernetes Cluster
 
+Use Terraform to install Flux itself:
+
+[source,bash]
+----
+cd terraform
+terraform init
+terraform apply
+----
+
+Let Flux install the Weaveworks dashboard:
+
+[source,bash]
+----
+PASSWORD="<A new password you create, removing the brackets and including the quotation marks>"
+
+gitops create dashboard ww-gitops \
+  --password=$PASSWORD \
+  --export > ./clusters/my-cluster/weave-gitops-dashboard.yaml
+
+git add ./clusters/my-cluster/weave-gitops-dashboard.yaml
+git commit -m "Add Weave GitOps Dashboard"
+git push
+----
+
+== Use the Weaveworks dashboard
+
+[source,bash]
+----
+kubectl port-forward svc/ww-gitops-weave-gitops -n flux-system 9001:9001
+----
+
+- Open the browser and go to http://localhost:9001
+- Log in with username `admin` and the password set when adding the dashboard to the cluster
