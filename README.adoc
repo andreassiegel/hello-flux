@@ -1,0 +1,24 @@
+= Hello GitOps, hello Flux
+
+== Install Flux
+
+https://fluxcd.io/flux/installation[Installation instructions in the Flux documentation]
+
+=== Local Machine
+
+.Install Flux CLI
+[source,bash]
+----
+brew install fluxcd/tap/flux
+----
+
+To configure command completion, add the following to `~/.zshrc`:
+
+.Configure command completion
+[source,bash]
+----
+. <(flux completion zsh)
+----
+
+=== Kubernetes Cluster
+
